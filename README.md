@@ -23,8 +23,12 @@ Have you already cloned the project? ( xD )
 
 Well, then run these commands
 
-`npm install`
+```
+npm install
+```
 
-`gulp`
+```
+gulp
+```
 
-You're all set, just need to use something like `web-ext run` to pop this add-on on a development enviroment.
+You're all set, just need to use something like `web-ext run` to pop this add-on on a development environment.
