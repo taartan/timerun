@@ -18,6 +18,7 @@
 
     "icons": {
 
+        "24": "icon/age-24.png",
         "48": "icon/age-64.png",
         "64": "icon/age-64.png",
         "128": "icon/age-128.png"

@@ -1,5 +1,5 @@
 # Timerun
-[ Time's running... ]
+![icon](icon/age-24.png) [ Time's running... ]
 
 ![screenshot](image/screenshot.png)
 
