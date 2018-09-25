@@ -1,0 +1,47 @@
+{
+
+    "description": "Shows your exact age in nano years, in different styles",
+    "manifest_version": 2,
+    "name": "Timerun",
+    "version": "0.0.1a",
+    "homepage_url": "https://github.com/mrreiha/timerun",
+
+    "application": {
+
+        "gecko": {
+
+            "id": "timerun@mrreiha.com"
+
+        }
+
+    },
+
+    "icons": {
+
+        "48": "icon/age-64.png",
+        "64": "icon/age-64.png",
+        "128": "icon/age-128.png"
+
+    },
+
+    "options_ui": {
+
+        "browser_style": true,
+        "page": "page/pref.html"
+
+
+    },
+
+    "chrome_url_overrides": {
+
+        "newtab": "page/age.html"
+
+    },
+
+    "permissions": [
+
+        "storage"
+
+    ]
+
+}
