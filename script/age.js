@@ -2,7 +2,7 @@
 
     'use strict';
 
-    var finishedProccess = browser.storage.local.get( 'boomDay' ),
+    var finishedProccess = browser.storage.sync.get( 'boomDay' ),
         div = get( 'div' ),
         span,
 
@@ -16,7 +16,7 @@
 
             // 31536000000 = 1000 * 60 * 60 * 24 * 365
             //   years     =  ms    s   min  hour  day
-            var years =  ( ( ( new Date - boomDay ) / 31536000000 ).toFixed( 9 ) ) + '',
+            var years =  ( ( ( new Date - new Date( boomDay ) ) / 31536000000 ).toFixed( 9 ) ) + '',
                 len = years.length,
 
                 char;
@@ -39,7 +39,7 @@
 
         boomDay = res.boomDay;
 
-        if ( !boomDay || isNaN( boomDay.valueOf() ) ) {
+        if ( !boomDay || isNaN( parseInt( boomDay ) ) ) {
 
             span = get( 'div span' );
 

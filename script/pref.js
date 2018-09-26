@@ -2,19 +2,19 @@
 
     'use strict';
 
-    var finishedProccess = browser.storage.local.get( 'boomDay' ),
+    var finishedProccess = browser.storage.sync.get( 'boomDay' ),
         boomDayInput = d.forms[ 0 ].bday;
 
     finishedProccess.then( function( res ) {
 
-        if ( res.boomDay && !isNaN( res.boomDay.valueOf() ) )
-            boomDayInput.value = res.boomDay.toISOString().slice( 0, 10 );
+        if ( res.boomDay && !isNaN( parseInt( res.boomDay ) ) )
+            boomDayInput.value = res.boomDay.slice( 0, 10 );
 
         boomDayInput.addEventListener( 'change', function( e ) {
 
-            browser.storage.local.set({
+            browser.storage.sync.set({
 
-                boomDay: new Date( this.value )
+                boomDay: ( new Date( this.value ) ).toISOString().slice( 0, 10 )
 
             });
 

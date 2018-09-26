@@ -3,14 +3,14 @@
     "description": "Shows your exact age in nano years, in different styles",
     "manifest_version": 2,
     "name": "Timerun",
-    "version": "0.0.1a",
+    "version": "0.0.2a",
     "homepage_url": "https://github.com/mrreiha/timerun",
 
-    "application": {
+    "applications": {
 
         "gecko": {
 
-            "id": "timerun@mrreiha.com"
+            "id": "{fe415924-dd4b-4689-8c27-4cfd14f1f624}"
 
         }
 
