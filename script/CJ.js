@@ -97,6 +97,14 @@
 
 		},
 
+		isNumeric: arg => {
+			
+			let float = parseFloat( arg );
+
+			return !Number.isNaN( float ) && Number.isFinite( float );
+
+		},
+
 		// From: https://gist.github.com/gre/1650294
 		ease: {
 

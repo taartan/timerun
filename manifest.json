@@ -2,8 +2,8 @@
 
     "description": "Shows your exact age in nano years, in different styles",
     "manifest_version": 2,
-    "name": "Timerun",
-    "version": "0.0.2a",
+    "name": "TimeRun",
+    "version": "0.0.3",
     "homepage_url": "https://github.com/mrreiha/timerun",
 
     "applications": {

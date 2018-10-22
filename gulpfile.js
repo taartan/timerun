@@ -26,7 +26,7 @@
 			watch( STYLUS_PATH ),
 			stylus({
 
-				compress: false
+				compress: true
 
 			}),
 			gulp.dest( CSS_PATH )
@@ -45,6 +45,8 @@
 			gulp.dest( MINI_JS_PATH )
 
 		]);
+
+		// gulp.src( JS_PATH ).pipe( watch( JS_PATH ) ).pipe( uglify() ).pipe( gulp.dest( MINI_JS_PATH ) );
 
 	});
 

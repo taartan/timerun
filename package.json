@@ -1,6 +1,6 @@
 {
   "name": "timerun",
-  "version": "0.0.2a",
+  "version": "0.0.3",
   "description": "Shows your exact age in nano years, in different styles",
   "main": "gulpfile.js",
   "scripts": {

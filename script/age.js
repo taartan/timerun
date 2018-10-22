@@ -1,45 +1,49 @@
-;!( function( w, d ){
+;!( ( w, d ) => {
 
     'use strict';
 
-    var finishedProccess = browser.storage.sync.get( 'boomDay' ),
+    var updateAge = () => {
+
+            // =================== 1000 * 60 * 60
+            // ===================  ms    s   min
+            var unitBasedDivider = 1000 * 60 * 60 * units[ birthday.unit ],
+                value =  ( ( ( ( new Date - new Date( [ birthday.year, birthday.month, birthday.day ].join( '-' ) ) ) / unitBasedDivider ).toFixed( 10 ) ) + '' ).slice( 0 , 12 );
+
+            div.innerHTML = '';
+
+            for ( let s of value )
+                div.insertAdjacentHTML( 'beforeend', `<span ${( s == '.' ? 'class="dot"' : '' )}>${s}</span>` );
+
+            cycle = reqAnim( updateAge );
+
+        },
+
+        finishedProccess = browser.storage.sync.get( 'birthday' ),
+
         div = get( 'div' ),
         span,
 
         body = d.body || get( 'body' ),
 
         cycle = false,
+        units = {
 
-        boomDay,
+            year: 24 * 365,
+            // 6 months have 31 days and 6 of them have 30 days
+            month: ( 12 * 30 ) + ( 12 * 31 ),
+            week: 24 * 7,
+            day: 24,
+            hour: 1
 
-        updateAge = function() {
+        },
 
-            // 31536000000 = 1000 * 60 * 60 * 24 * 365
-            //   years     =  ms    s   min  hour  day
-            var years =  ( ( ( new Date - new Date( boomDay ) ) / 31536000000 ).toFixed( 9 ) ) + '',
-                len = years.length,
+        birthday;
 
-                char;
+    finishedProccess.then( res => {
 
-            div.innerHTML = '';
+        birthday = res.birthday;
 
-            while ( len-- ) {
-
-                char = years[ len ];
-
-                div.insertAdjacentHTML( 'afterbegin', `<span ${( char == '.' ? 'class="dot"' : '' )}>${char}</span>` );
-
-            }
-
-            cycle = reqAnim( updateAge );
-
-        };
-
-    finishedProccess.then( function( res ) {
-
-        boomDay = res.boomDay;
-
-        if ( !boomDay || isNaN( parseInt( boomDay ) ) ) {
+        if ( !birthday || ![ birthday.year, birthday.month, birthday.day ].every( isNumeric ) ) {
 
             span = get( 'div span' );
 
@@ -55,6 +59,8 @@
         }
 
         body.removeClass( 'not-ready' );
+
+        get( '#unit' ).textContent = birthday.unit;
 
         cycle = reqAnim( updateAge );
 

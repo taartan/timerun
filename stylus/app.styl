@@ -1,7 +1,9 @@
 @require 'CJ'
-@require 'fonts'
 
 body
+
+    $color = #555
+
     @extends .oh
     background #222
     font-family special
@@ -11,16 +13,30 @@ body
         bottom 0
         left -10px
         width 100%
-        color #555
+        color $color
         z-index 1
         font-size 150px
         line-height .4
         letter-spacing -8px
 
+    h2
+        @extends .abs
+        bottom 0
+        color $color
+        font-family nova
+        font-size 290px
+        height 300px
+        text-transform uppercase
+
+        svg
+            width 100%
+            height 100%
+
+            text
+                fill-opacity .6
+
     &.not-ready
         font-family $font-family
-
-        $color = #555
 
         > div:first-child
             @extends .ta-left
@@ -36,3 +52,6 @@ body
             span
                 border-bottom 1px solid $color
                 cursor pointer
+
+        // h2
+        //     @extends .dn
