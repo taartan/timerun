@@ -1,9 +1,9 @@
 {
 
-    "description": "Shows your exact age in nano years, in different styles",
+    "description": "Keeping you motivated by showing the time goes on constantly, in different ways of your choice",
     "manifest_version": 2,
     "name": "TimeRun",
-    "version": "0.0.3",
+    "version": "0.0.31",
     "homepage_url": "https://github.com/mrreiha/timerun",
 
     "applications": {
