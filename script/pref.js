@@ -7,7 +7,10 @@
 
         pass = true,
 
-        selects = getEm( 'form select' );
+        id = false,
+
+        selects = getEm( 'form select' ),
+        notif = get( '.notif' );
 
     finishedProccess.then( res => {
 
@@ -19,7 +22,7 @@
                 if ( isNumeric( birthday[ val ] ) )
                     form[ val ].value = birthday[ val ];
 
-            form.unit.value = birthday.unit || 'year';
+            form.unit.value = birthday.unit || 'years';
 
         }
 
@@ -43,6 +46,24 @@
 
                 });
 
+                if ( notif.hasClass( 'show' ) ) {
+
+                    if ( id )
+                        clearTimeout( id );
+
+                    notif.removeClass( 'show' );
+
+                    let lm = notif.cloneNode( 1 );
+                    notif.parentNode.insertBefore( lm, notif );
+
+                    notif.remove();
+                    notif = lm;
+
+                }
+
+                reqAnim( () => notif.addClass( 'show' ) );
+                id = setTimeout( () => notif.removeClass( 'show' ), 2000 );
+
             });
 
         });
@@ -56,9 +77,5 @@
         d.body.innerHTML = 'Something very wrong happend, please contact us ( error code: 006 ).';
 
     });
-
-    // Delete older datas if exists.
-    browser.storage.sync.remove( 'boomDay' );
-    browser.storage.local.remove( 'boomDay' );
 
 })( this, document );

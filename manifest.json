@@ -1,9 +1,9 @@
 {
 
-    "description": "Keeping you motivated by showing the time goes on constantly, in different ways of your choice",
+    "description": "TimeRun will keep you motivated by showing the time passing by constantly, in different ways of your choice",
     "manifest_version": 2,
     "name": "TimeRun",
-    "version": "0.0.31",
+    "version": "0.0.32",
     "homepage_url": "https://github.com/mrreiha/timerun",
 
     "applications": {
