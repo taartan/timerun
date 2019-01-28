@@ -1,6 +1,6 @@
 /**
  * @zCode 110110011000011011011000101101011101100010110001001000001101100110000101110110011000011000100000110110001010011111011001100001001101100110000100110110011000011100100000110110011000100000100000110110011000000111011000101010101101100010101101001000001101100110000010110110001011000111011011100011001101100010101000
- * @version v0.1 ( 11/2017 )
+ * @version v0.1 ( 12/2018 )
  * @author mrReiha
  * @license GPL
  */
@@ -55,7 +55,7 @@ for i in left right
 .oh
     overflow hidden
 
-for j in ( i inline ) ( ib inline-block ) ( b block ) ( n none )
+for j in ( i inline ) ( ib inline-block ) ( b block ) ( n none ) ( f flex ) ( 'if' inline-flex )
     .d{ j[ 0 ] }
         display j[ 1 ]
 
@@ -82,14 +82,23 @@ for i in visible hidden
 .nowrap
     white-space nowrap
 
+.out-of-sight
+    @extends .abs, .oh
+    clip rect( 0, 0, 0, 0 )
+    width 1px
+    height 1px
+    z-index -9999
+
 
 // === Reset.
 
 *, *:after, *:before
     prefix( 'box-sizing', inherit )
+    font-family inherit
 
 html
     prefix( 'box-sizing', border-box )
+    font-family $font-family
 
 a
     text-decoration none
@@ -103,14 +112,12 @@ for i in 1..6
 html, body
     padding 0
     margin 0
-    font-family $font-family
 
 body
 	font-size 13px
 	line-height 1.231
 
 input, textarea, button
-    font-family $font-family
     border 0
     outline 0
     margin 0

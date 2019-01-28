@@ -1,7 +1,7 @@
 {
   "name": "TimeRun",
-  "version": "0.0.31",
-  "description": "Keeping you motivated by showing the time goes on constantly, in different ways of your choice",
+  "version": "0.0.32",
+  "description": "TimeRun will keep you motivated by showing the time passing by constantly, in different ways of your choice",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

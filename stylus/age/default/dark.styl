@@ -1,0 +1,57 @@
+@require 'CJ'
+
+body
+
+    $color = #555
+
+    @extends .oh
+    background #222
+    font-family special
+
+    > div:first-child
+        @extends .abs
+        bottom 0
+        left -10px
+        width 100%
+        color $color
+        z-index 1
+        font-size 150px
+        line-height .4
+        letter-spacing -8px
+
+    h2
+        @extends .abs
+        bottom 0
+        color $color
+        font-family nova
+        font-size 290px
+        height 300px
+        text-transform uppercase
+
+        svg
+            width 100%
+            height 100%
+
+            text
+                fill-opacity .6
+
+    &.not-ready
+        font-family $font-family
+
+        > div:first-child
+            @extends .ta-left
+            transform translateY( 50% )
+            font-size 28px
+            left 0
+            bottom 50%
+            color $color
+            letter-spacing 0
+            line-height 1.231
+            padding-left 75px
+
+            span
+                border-bottom 1px solid $color
+                cursor pointer
+
+        h2
+            @extends .dn

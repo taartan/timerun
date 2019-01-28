@@ -1,57 +1,171 @@
 @require 'CJ'
 
-body
+$font-family = cov, serif
 
-    $color = #555
-
+html, body
     @extends .oh
-    background #222
-    font-family special
+    height 100%
+    font-family $font-family
 
-    > div:first-child
-        @extends .abs
-        bottom 0
-        left -10px
-        width 100%
-        color $color
-        z-index 1
-        font-size 150px
-        line-height .4
-        letter-spacing -8px
+body
+    background url( '../image/bg.png' ) #010101 no-repeat center center fixed
+    background-size 100% auto
+    // background-size needs to be '100% auto' because we're trying to use
+    // same background-size on `.cont:after` to achive border-gradient FX
 
-    h2
+    &.not-ready .cont
+        justify-content space-around
+        align-items center
+
+        > *
+            @extends .dn
+
+        > .no-birthday
+            @extends .db
+
+    svg
+
+        stop
+            stop-color #fff
+
+            &.red
+                stop-color #ab0000
+
+            &.blue
+                stop-color #00ceca
+
+        text
+            fill #fff
+            opacity .2
+            cursor pointer
+            transition .2s
+
+.cont
+
+    $margin = 3px
+
+    .no-birthday
+        @extends .dn
+        font 18px $font-family
+        color #e3e3e3
+
+        > span
+            @extends .dib, .vm
+            width 30px
+            height 24px
+            cursor pointer
+
+            svg
+                max-width 100%
+                max-height 100%
+                fill url( #grad )
+
+    @extends .abs, .oh, .df
+    flex-flow column nowrap
+    top 50%
+    left 50%
+    width calc( 100% - 150px )
+    height calc( 100% - 150px )
+    min-height 400px
+    transform translate( -50%, -50% )
+    color #fff
+
+    &:before, &:after
         @extends .abs
-        bottom 0
-        color $color
-        font-family nova
-        font-size 290px
-        height 300px
-        text-transform uppercase
+        content ''
+        z-index -1
+        border-radius 25px
+        pointer-events none
+
+    &:before
+        opacity .2
+        background linear-gradient( 60deg, #a30505, #38d2cf )
+
+        for i in top left right bottom
+            { i } ( 0 )
+
+    &:after
+        border-radius 23px
+        background linear-gradient( to bottom, rgba( #000, .5 ), rgba( #000, .5 ) ),
+                url( '../image/bg.png' ) no-repeat center center fixed
+        background-size calc( 100% + 150px ) auto
+
+        for i in top left right bottom
+            { i } ( $margin )
+
+
+    .setting
+        @extends .df
+        flex 1 1 50%
+        flex-flow row-reverse nowrap
+        align-items flex-start
 
         svg
-            width 100%
+            width 25px
+            height 25px
+            fill #fff
+            margin 30px
+            cursor pointer
+
+
+    @keyframes moving
+
+        from
+            transform translateX( 0 ) translateZ( 0 )
+
+        to
+            transform translateX( -160px ) translateZ( 0 )
+
+    .street
+        @extends .rel
+        height 6px
+        width 100%
+
+        .block
+            @extends .rel
+            z-index 2
+            background #fff
+            width 200%
             height 100%
+            will-change transform
+            animation moving 1.5s linear infinite
+            background repeating-linear-gradient( to right, transparent, transparent 80px, #fff 80px, #fff 160px )
 
-            text
-                fill-opacity .6
-
-    &.not-ready
-        font-family $font-family
-
-        > div:first-child
-            @extends .ta-left
-            transform translateY( 50% )
-            font-size 28px
+        &:before, &:after
+            @extends .abs
+            content ''
             left 0
-            bottom 50%
-            color $color
-            letter-spacing 0
-            line-height 1.231
-            padding-left 75px
+            right 0
+            top -45px
+            padding 50px 0
+            background rgba( #333, .4 )
+            z-index 0
 
-            span
-                border-bottom 1px solid $color
-                cursor pointer
+        &:after
+            top -55px
+            padding 60px 0
 
-        h2
-            @extends .dn
+
+    .age
+        @extends .df
+        justify-content flex-end
+        flex-flow column nowrap
+        flex 1 1 50%
+        padding-bottom 7vmin
+        padding-left 7vmin
+        font-family $font-family
+        font-size 18px
+
+        .value
+            font-size 72px
+
+            .dot, .dot ~ span
+                opacity .5
+
+        .units
+            width auto
+            padding-left 5px
+            height 20px
+
+            .active
+                opacity 1

@@ -1,7 +1,7 @@
 /**
  * @zCode 110110011000011011011000101101011101100010110001001000001101100110000101110110011000011000100000110110001010011111011001100001001101100110000100110110011000011100100000110110011000100000100000110110011000000111011000101010101101100010101101001000001101100110000010110110001011000111011011100011001101100010101000
  * @name CJ
- * @version 0.3.4 ( Dec 2017 )
+ * @version v0.4 ( 12/2018 )
  * @author Reiha Hosseini ( @mrReiha )
  * @license GPL
  */
@@ -98,7 +98,7 @@
 		},
 
 		isNumeric: arg => {
-			
+
 			let float = parseFloat( arg );
 
 			return !Number.isNaN( float ) && Number.isFinite( float );
@@ -206,8 +206,10 @@
 				start: function() {
 
 					var s = this.style,
+						display = getComputedStyle( this ).display;
 
-						display = s.display || getComputedStyle( this ).display;
+					if ( display == 'none' )
+						display = 'block';
 
 					mode == 'in' ?
 						( s.display = display, s.opacity = 0 ) :
@@ -232,12 +234,33 @@
 
 		},
 
+		until: function( selector ) {
+
+			var par = this.parentNode;
+
+			if ( Element.prototype.closest )
+				return this.closest( selector );
+
+			if ( !Element.protoype.matches )
+				Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector || Element.prototype.mozMatchesSelector;
+
+			do {
+
+				if ( par.matches( selector ) )
+					return par;
+
+				par = par.parentNode;
+
+			} while ( par && par.nodeType == 1 );
+
+		},
+
 		hasClass: function( cn ) {
 
 			var c = this.className;
 
-			// Trick is here! There's no need to RegExp
-			return c.replace( cn, '-' ) != c;
+			// Trick is here! There's no need to use RegExp
+			return c && c.replace( cn, '-' ) != c;
 
 		},
 
@@ -271,17 +294,29 @@
 
 		},
 
-		css: function( prop, val, prefix ) {
+		css: function( prop, val, prefix = false ) {
 
 			var that = this,
 				old = that.style[ prop ] || getComputedStyle( that )[ prop ],
 
 				isVal = typeof val != 'undefined',
+				isNotVal = val === false,
 
 				tmp,
 				fn;
 
 			if ( isVal ) {
+
+				if ( isNotVal ) {
+
+					if ( this.style.removeProperty )
+						that.style.removeProperty( prop );
+					else
+						that.style[ prop ] = '';
+
+					return that;
+
+				}
 
 				if ( prefix ) {
 
@@ -294,9 +329,11 @@
 
 				that.style[ prop ] = val;
 
+				return that;
+
 			}
 
-			return isVal ? that : old;
+			return old;
 
 		},
 
@@ -368,12 +405,32 @@
 
 		on: function( e, func, bool = false ) {
 
+			var that = this;
+
+			if ( !that.fn )
+				that.fn = {};
+
+			that.fn[ e + bool ] = func;
+
+			if ( w.addEventListener )
+				that.addEventListener( e, that.fn[ e + bool ], bool );
+			else
+				that[ 'on' + e ] = that.fn[ e + bool ];
+
+			return that;
+
+		},
+
+		onOld: function( e, func, bool = false ) {
+
 			var set = function( _e ) {
 
 					if ( w.addEventListener )
-						w.addEventListener( _e, that.fn[ _e ], bool );
-					else if ( w.attachEvent )
-						w.attachEvent( 'on' + _e, that.fn[ _e ] );
+						~_e.search( /mouse/gi ) ?
+								that.addEventListener( _e, that.fn[ _e ], bool ) :
+								w.addEventListener( _e, that.fn[ _e ], bool );
+					// else if ( w.attachEvent )
+					// 	w.attachEvent( 'on' + _e, that.fn[ _e ] );
 					else
 						that[ 'on' + _e ] = func;
 
@@ -386,11 +443,11 @@
 
 			if ( e instanceof Array ) {
 
-				for ( var i = 0,  _len = e.length; i < _len; i++ ) {
+				for ( let i = 0, _len = e.length; i < _len; i++ ) {
 
 					that.fn[ e[ i ] ] = function( E = false, r = false ) {
 
-						if ( r || E.target === that )
+						if ( r || E.target === that || that === w )
 							func.apply( that, [ E ] );
 
 					}
@@ -403,7 +460,7 @@
 
 				that.fn[ e ] = function( E = false, r = false ) {
 
-					if ( r || E.target === that )
+					if ( r || E.target === that || that === w )
 						func.apply( that, [ E ] );
 
 				}
@@ -416,14 +473,16 @@
 
 		},
 
-		off: function( e, bool = false ) {
+		offOld: function( e, bool = false ) {
 
 			var unset = function( _e ) {
 
 					if ( w.addEventListener )
-						w.removeEventListener( _e, that.fn[ _e ], bool );
-					else if ( w.attachEvent )
-						w.detachEvent( 'on' + _e, that.fn[ _e ] );
+						~_e.search( /mouse/gi ) ?
+								that.removeEventListener( _e, that.fn[ _e ], bool ) :
+								w.removeEventListener( _e, that.fn[ _e ], bool );
+					// else if ( w.attachEvent )
+					// 	w.detachEvent( 'on' + _e, that.fn[ _e ] );
 					else
 						delete that[ 'on' + _e ];
 
