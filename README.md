@@ -1,21 +1,25 @@
 # TimeRun
-![icon](icon/age-24.png) [ Time's running... ]
+![icon](icon/timeRun-24.png) [ Time's running... ]
 
 ![screenshot](image/screenshot.png)
 
 ## What?
 
-This will show your exact age ( in nano years ) to you, everytime you open a new-tab. Yes, this will replace your currently new-tab page, but who does need it?
+This will show your exact ageµ ( based on multiple units your choice ) to you, every time you open a new tab. Yes, this will replace your currently new tab page, but who does need it?
 
-( *update to an already-exsisted add-on [Lifetime](https://addons.mozilla.org/en-US/firefox/addon/lifetime/).* )
+I've found it more productive to get notified about my age each and every day.
 
 ## Why?
 
-Because it wasn't compatible with FireFox Quantum. Additionally, it was experimental for me to make an add-on.
+To keep you focused. to remind you how much your time is valuable. as a motivation lever.
 
 ## How?
 
+This makes you feel it deeply how time is passing by so quickly. and as result, you will have more energy and motivation.
+
 Scratched with the brand-new [WebExtension](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) language ( okay, maybe that was too much! ).
+
+## How
 
 ## How to start development?
 
