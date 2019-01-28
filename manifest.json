@@ -18,11 +18,10 @@
 
     "icons": {
 
-        "16": "icon/timeRun-16.png",
-        "24": "icon/timeRun-24.png",
-        "48": "icon/timeRun-64.png",
-        "64": "icon/timeRun-64.png",
-        "128": "icon/timeRun-128.png"
+        "24": "icon/age-24.png",
+        "48": "icon/age-64.png",
+        "64": "icon/age-64.png",
+        "128": "icon/age-128.png"
 
     },
 
@@ -36,7 +35,7 @@
 
     "chrome_url_overrides": {
 
-        "newtab": "page/index.html"
+        "newtab": "page/age.html"
 
     },
 
