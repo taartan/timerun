@@ -1,7 +1,7 @@
 # TimeRun
 ![icon](icon/timeRun-24.png) [ Time's running... ]
 
-> This is master branch and has latest stable version of TimeRun. For development purposes make sure to use [develop branch](../develop). Best installation experience via [Mozilla add-on manager](https://addons.mozilla.org/firefox/addon/timerun/).
+> This is master branch and has latest stable version of TimeRun. For development purposes make sure to use [develop branch](../tree/develop). Best installation experience via [Mozilla add-on manager](https://addons.mozilla.org/firefox/addon/timerun/).
 
 ![screenshot](image/screenshot.png)
 
